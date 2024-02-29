@@ -63,7 +63,7 @@ def read_documents(folder_path):
 
     return documents, case_ids, original_paragraphs_list, preprocessed_paragraphs_list
 
-folder_path='C:\\Users\\dania\\Documents\\LegalQA\\data_processing\\19'
+folder_path='data_processing/19'
 documents, case_ids, original_paragraphs, preprocessed_paragraphs = read_documents(folder_path)
 preprocessed_documents = [' '.join(preprocess_text(doc)) for doc in documents]
 
@@ -84,9 +84,9 @@ df = pd.DataFrame({
 
 df['processed_training_document'] = df['original_document'].map(preprocess_text2)
 
-df.to_csv('documents.csv', index=False)
+df.to_csv('data_processing/documents.csv', index=False)
 
-with open('tfidf_vectorizer.pkl', 'wb') as f:
+with open('data_processing/tfidf_vectorizer.pkl', 'wb') as f:
     pickle.dump(vectorizer, f)
-with open('tfidf_matrix.pkl', 'wb') as f:
+with open('data_processing/tfidf_matrix.pkl', 'wb') as f:
     pickle.dump(tfidf_matrix, f)

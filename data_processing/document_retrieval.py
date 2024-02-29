@@ -35,10 +35,10 @@ def preprocess_text(text):
     return tokens
 
 def load_data_and_vectorizer():
-    df = pd.read_csv('documents.csv')
-    with open('tfidf_vectorizer.pkl', 'rb') as f:
+    df = pd.read_csv('data_processing/documents.csv')
+    with open('data_processing/tfidf_vectorizer.pkl', 'rb') as f:
         vectorizer = pickle.load(f)
-    with open('tfidf_matrix.pkl', 'rb') as f:
+    with open('data_processing/tfidf_matrix.pkl', 'rb') as f:
         tfidf_matrix = pickle.load(f)
     return df, vectorizer, tfidf_matrix
 
