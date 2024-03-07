@@ -28,10 +28,6 @@ def preprocess_text(text):
     lemmatizer = WordNetLemmatizer()
     tokens = [lemmatizer.lemmatize(word) for word in tokens]
 
-    # Stemming
-    stemmer = PorterStemmer()
-    tokens = [stemmer.stem(word) for word in tokens]
-
     return tokens
 
 def load_data_and_vectorizer():

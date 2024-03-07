@@ -9,6 +9,7 @@ import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import re
+from gensim.corpora import Dictionary
 
 # Download necessary NLTK data
 nltk.download('punkt')
@@ -33,16 +34,7 @@ def preprocess_text(text):
     lemmatizer = WordNetLemmatizer()
     tokens = [lemmatizer.lemmatize(word) for word in tokens]
 
-    # Stemming
-    stemmer = PorterStemmer()
-    tokens = [stemmer.stem(word) for word in tokens]
-
     return tokens
-
-def preprocess_text2(text):
-    text = re.sub(r'[^\w\s\']', "", text)
-    text = re.sub(' +', ' ', text)
-    return text
 
 def read_documents(folder_path):
     documents = []
@@ -63,30 +55,37 @@ def read_documents(folder_path):
 
     return documents, case_ids, original_paragraphs_list, preprocessed_paragraphs_list
 
-folder_path='data_processing/19'
-documents, case_ids, original_paragraphs, preprocessed_paragraphs = read_documents(folder_path)
-preprocessed_documents = [' '.join(preprocess_text(doc)) for doc in documents]
+if __name__ == "__main__":
+    folder_path='data_processing/19'
+    documents, case_ids, original_paragraphs, preprocessed_paragraphs = read_documents(folder_path)
+    preprocessed_documents1 = [preprocess_text(doc) for doc in documents]
+    dictionary = Dictionary(preprocessed_documents1)
+    dictionary.save('data_processing/dictionary.dict')
 
-def vectorize_documents(documents):
-    vectorizer = TfidfVectorizer()
-    tfidf_matrix = vectorizer.fit_transform(documents)
-    return vectorizer, tfidf_matrix
+    preprocessed_documents = []
 
-vectorizer, tfidf_matrix = vectorize_documents(preprocessed_documents)
+    for i in range(len(preprocessed_documents1)):
+        document = ' '.join(preprocessed_documents1[i])
+        preprocessed_documents.append(document)
+        
+    def vectorize_documents(documents):
+        vectorizer = TfidfVectorizer()
+        tfidf_matrix = vectorizer.fit_transform(documents)
+        return vectorizer, tfidf_matrix
 
-df = pd.DataFrame({
-    'case_id': case_ids,
-    'original_document': documents,
-    'preprocessed_document': preprocessed_documents,
-    'original_paragraphs': original_paragraphs,
-    'preprocessed_paragraphs': preprocessed_paragraphs
-})
+    vectorizer, tfidf_matrix = vectorize_documents(preprocessed_documents)
 
-df['processed_training_document'] = df['original_document'].map(preprocess_text2)
+    df = pd.DataFrame({
+        'case_id': case_ids,
+        'original_document': documents,
+        'preprocessed_document': preprocessed_documents,
+        'original_paragraphs': original_paragraphs,
+        'preprocessed_paragraphs': preprocessed_paragraphs
+    })
 
-df.to_csv('data_processing/documents.csv', index=False)
+    df.to_csv('data_processing/documents.csv', index=False)
 
-with open('data_processing/tfidf_vectorizer.pkl', 'wb') as f:
-    pickle.dump(vectorizer, f)
-with open('data_processing/tfidf_matrix.pkl', 'wb') as f:
-    pickle.dump(tfidf_matrix, f)
+    with open('data_processing/tfidf_vectorizer.pkl', 'wb') as f:
+        pickle.dump(vectorizer, f)
+    with open('data_processing/tfidf_matrix.pkl', 'wb') as f:
+        pickle.dump(tfidf_matrix, f)
