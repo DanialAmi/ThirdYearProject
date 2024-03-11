@@ -33,5 +33,5 @@ bi_encoder.max_seq_length = 512
 
 corpus_embeddings = bi_encoder.encode(paragraphs, convert_to_tensor=True, show_progress_bar=True)
 
-with open("embeddings.pkl", "wb") as fOut:
+with open("data_processing/embeddings.pkl", "wb") as fOut:
     pickle.dump({"case_ids": case_ids, "paragraphs": paragraphs, "embeddings": corpus_embeddings}, fOut, protocol=pickle.HIGHEST_PROTOCOL)
