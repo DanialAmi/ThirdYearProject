@@ -3,25 +3,7 @@ from gensim.corpora import Dictionary
 from gensim.similarities import SoftCosineSimilarity, WordEmbeddingSimilarityIndex
 from gensim.similarities.termsim import SparseTermSimilarityMatrix
 from preproccess import preprocess_text
-
-def text_to_bow(text, dictionary):
-    tokens = preprocess_text(text)
-    bow_vector = dictionary.doc2bow(tokens)
-    return bow_vector
-
-def create_similarity_matrix(fasttext_model, dictionary):
-    fasttext_kv = fasttext_model.wv
-    similarity_index = WordEmbeddingSimilarityIndex(fasttext_kv)
-    similarity_matrix = SparseTermSimilarityMatrix(similarity_index, dictionary, nonzero_limit=100)
-    return similarity_matrix
-
-# Example paragraphs and query
-def calculate_similarity(query, paragraphs, dictionary, similarity_matrix):
-    query_bow = text_to_bow(query, dictionary)
-    paragraph_bows = [text_to_bow(paragraph, dictionary) for paragraph in paragraphs]
-    soft_cosine_similarity = SoftCosineSimilarity(paragraph_bows, similarity_matrix)
-    scores = soft_cosine_similarity[query_bow]
-    return scores
+from fasttext import calculate_similarity
 
 if __name__ == "__main__":
     paragraphs = [

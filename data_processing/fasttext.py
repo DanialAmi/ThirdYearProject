@@ -26,7 +26,7 @@ def calculate_similarity(query, paragraphs, dictionary, similarity_matrix):
     query_bow = text_to_bow(query, dictionary)
     paragraph_bows = [text_to_bow(paragraph, dictionary) for paragraph in paragraphs]
     soft_cosine_similarity = SoftCosineSimilarity(paragraph_bows, similarity_matrix)
-    scores = soft_cosine_similarity(query_bow)
+    scores = soft_cosine_similarity[query_bow]
     return scores
 
 if __name__ == "__main__":
