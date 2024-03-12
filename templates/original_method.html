@@ -6,14 +6,10 @@
   </head>
   <body>
     <div class="menu-bar">
-      <button
-        onclick="window.location='/original-method'; submitQueryOriginal()"
-      >
+      <button onclick="window.location='/original-method'">
         Original Method
       </button>
-      <button
-        onclick="window.location='/retrieval-rerank'; submitQueryRetrievalRerank()"
-      >
+      <button onclick="window.location='/retrieval-rerank'">
         Retrieval and Re-rank
       </button>
     </div>
@@ -23,7 +19,7 @@
         id="queryInput"
         placeholder="Enter your legal question here"
       />
-      <button id="submitBtn" onclick="submitQuery()"></button>
+      <button id="submitBtn" onclick="submitQueryOriginal()"></button>
     </div>
     <div id="answerSpace">Answer will appear here</div>
 

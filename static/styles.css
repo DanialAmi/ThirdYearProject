@@ -2,7 +2,7 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #919498;
+  background-color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,6 +11,7 @@ body {
 }
 
 .search-container {
+  color: #ffffff;
   display: flex;
   align-items: center;
   margin-bottom: 20px;
@@ -24,26 +25,32 @@ body {
   border: transparent;
   border-radius: 20px;
   font-size: 16px;
-  color: #333;
-  background-color: #d9d9d9;
+  color: #ffffff;
+  background-color: #f6811f;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease-in-out; /* Smooth transition for the shadow effect */
 }
 
+#queryInput::placeholder {
+  color: white; /* Change placeholder text color to white */
+}
+
 #queryInput:focus {
+  color: white;
   outline: none;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15), 0 4px 6px rgba(0, 0, 0, 0.4);
 }
 
 #queryInput:hover {
+  color: white;
   outline: none;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15), 0 4px 6px rgba(0, 0, 0, 0.4);
 }
 
 #submitBtn {
-  background: url("/static/magnifying_glass.png") no-repeat center;
-  background-size: 50%;
-  background-color: #d9d9d9;
+  background: url("icons8-search-50.png") no-repeat center;
+  background-size: 70%;
+  background-color: #f6811f;
   border-radius: 50%;
   border: none;
   width: 42px;
@@ -63,8 +70,8 @@ body {
   border-radius: 15px;
   width: 700px;
   height: 200px;
-  background-color: #c7c7c7;
-  color: #333333;
+  background-color: #ffffff;
+  color: #333;
   overflow: auto;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease-in-out; /* Smooth transition for the shadow effect */
@@ -76,7 +83,7 @@ body {
   top: 0; /* Align the top of the menu bar with the top of the screen */
   left: 0; /* Align the left of the menu bar with the left of the screen */
   width: 100%; /* Stretch the menu bar across the full width */
-  background-color: #dadadb; /* Change the background color to a darker shade */
+  background-color: #173682; /* Change the background color to a darker shade */
   color: white; /* Change the text color to white for better contrast */
   padding: 10px 0; /* Some vertical padding for aesthetic spacing */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adjust the shadow for depth */
@@ -89,7 +96,8 @@ body {
 
 .menu-bar button {
   font-family: "Poppins", sans-serif;
-  background-color: #d9d9d9; /* Button background color */
+  color: #ffffff;
+  background-color: #f6811f; /* Button background color */
   border: none; /* Remove default border */
   padding: 10px 20px; /* Padding inside the buttons */
   border-radius: 5px; /* Slightly rounded corners for the buttons */
@@ -98,5 +106,5 @@ body {
 }
 
 .menu-bar button:hover {
-  background-color: #bfbfbf; /* Darker shade on hover */
+  background-color: #c86a1d; /* Darker shade on hover */
 }
