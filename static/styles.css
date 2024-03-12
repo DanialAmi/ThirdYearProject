@@ -1,72 +1,102 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #919498;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
+  font-family: "Poppins", sans-serif;
+  background-color: #919498;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
 }
 
 .search-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 #queryInput {
-    font-family: 'Poppins', sans-serif;
-    width: 600px;
-    padding: 10px 20px;
-    margin-right: 10px;
-    border: transparent;
-    border-radius: 20px;
-    font-size: 16px;
-    color: #333;
-    background-color: #d9d9d9;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.2);
-    transition: box-shadow 0.3s ease-in-out; /* Smooth transition for the shadow effect */
+  font-family: "Poppins", sans-serif;
+  width: 600px;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: transparent;
+  border-radius: 20px;
+  font-size: 16px;
+  color: #333;
+  background-color: #d9d9d9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease-in-out; /* Smooth transition for the shadow effect */
 }
 
 #queryInput:focus {
-    outline: none;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.15), 0 4px 6px rgba(0,0,0,0.4);
+  outline: none;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15), 0 4px 6px rgba(0, 0, 0, 0.4);
 }
 
 #queryInput:hover {
-    outline: none;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.15), 0 4px 6px rgba(0,0,0,0.4);
+  outline: none;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15), 0 4px 6px rgba(0, 0, 0, 0.4);
 }
 
 #submitBtn {
-    background: url('/static/magnifying_glass.png') no-repeat center;
-    background-size: 50%;
-    background-color: #d9d9d9;
-    border-radius: 50%;
-    border: none;
-    width: 42px;
-    height: 42px;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.2);
+  background: url("/static/magnifying_glass.png") no-repeat center;
+  background-size: 50%;
+  background-color: #d9d9d9;
+  border-radius: 50%;
+  border: none;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-#submitBtn:hover{
-    box-shadow: 0 10px 15px rgba(0,0,0,0.15), 0 4px 6px rgba(0,0,0,0.4);
+#submitBtn:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15), 0 4px 6px rgba(0, 0, 0, 0.4);
 }
 
 #answerSpace {
-    margin-top: 20px;
-    padding: 20px;
-    border: transparent;
-    border-radius: 15px;
-    width: 700px;
-    height: 200px;
-    background-color: #c7c7c7;
-    color: #333333;
-    overflow: auto;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.2);
-    transition: box-shadow 0.3s ease-in-out; /* Smooth transition for the shadow effect */
+  margin-top: 20px;
+  padding: 20px;
+  border: transparent;
+  border-radius: 15px;
+  width: 700px;
+  height: 200px;
+  background-color: #c7c7c7;
+  color: #333333;
+  overflow: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease-in-out; /* Smooth transition for the shadow effect */
 }
 
+.menu-bar {
+  font-family: "Poppins", sans-serif;
+  position: absolute; /* Position the menu bar absolutely within the relative parent */
+  top: 0; /* Align the top of the menu bar with the top of the screen */
+  left: 0; /* Align the left of the menu bar with the left of the screen */
+  width: 100%; /* Stretch the menu bar across the full width */
+  background-color: #dadadb; /* Change the background color to a darker shade */
+  color: white; /* Change the text color to white for better contrast */
+  padding: 10px 0; /* Some vertical padding for aesthetic spacing */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adjust the shadow for depth */
+  z-index: 1000; /* Ensure the menu bar is above other elements */
+  display: flex;
+  justify-content: flex-start; /* Align buttons to the left */
+  gap: 10px; /* Space between buttons */
+  padding-left: 20px; /* Add padding to the left inside the menu bar */
+}
+
+.menu-bar button {
+  font-family: "Poppins", sans-serif;
+  background-color: #d9d9d9; /* Button background color */
+  border: none; /* Remove default border */
+  padding: 10px 20px; /* Padding inside the buttons */
+  border-radius: 5px; /* Slightly rounded corners for the buttons */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: background-color 0.3s ease-in-out; /* Smooth background color transition on hover */
+}
+
+.menu-bar button:hover {
+  background-color: #bfbfbf; /* Darker shade on hover */
+}

@@ -10,11 +10,18 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import re
 from gensim.corpora import Dictionary
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 # Download necessary NLTK data
 nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
+
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size = 1500,
+    chunk_overlap = 500,
+    separators= ['\n\n','\n','.',' ','']
+)
 
 def preprocess_text(text):
     # Remove punctuation
@@ -48,7 +55,7 @@ def read_documents(folder_path):
             with open(os.path.join(folder_path, filename), 'r', encoding='utf-8') as file:
                 text = file.read()
                 documents.append(text)
-                paragraphs = text.split('\n')
+                paragraphs = text_splitter.split_text(text)
                 original_paragraphs_list.append(paragraphs)
                 preprocessed_paragraphs = [' '.join(preprocess_text(para)) for para in paragraphs]
                 preprocessed_paragraphs_list.append(preprocessed_paragraphs)

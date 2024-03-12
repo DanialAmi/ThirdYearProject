@@ -14,14 +14,14 @@ with open("data_processing/embeddings.pkl", "rb") as fIn:
     paragraphs = stored_data["paragraphs"]
     embeddings = stored_data["embeddings"]
 
-def search(query, embeddings, documents):
+def search(query):
     question_embedding = bi_encoder.encode(query, convert_to_tensor=True)
     hits = util.semantic_search(question_embedding, embeddings, top_k=top_k)
     hits = hits[0]  # Get the hits for the first query
     
         ##### Re-Ranking #####
     # Now, score all retrieved passages with the cross_encoder
-    cross_inp = [[query, documents[hit['corpus_id']]] for hit in hits]
+    cross_inp = [[query, paragraphs[hit['corpus_id']]] for hit in hits]
     cross_scores = cross_encoder.predict(cross_inp)
 
     # Sort results by the cross-encoder scores
@@ -33,12 +33,12 @@ def search(query, embeddings, documents):
     print("Top-3 Bi-Encoder Retrieval hits")
     hits = sorted(hits, key=lambda x: x['score'], reverse=True)
     for hit in hits[0:3]:
-        print("\t{:.3f}\t{}".format(hit['score'], documents[hit['corpus_id']].replace("\n", " ")))
+        print("\t{:.3f}\t{}".format(hit['score'], paragraphs[hit['corpus_id']].replace("\n", " ")))
 
     # Output of top-5 hits from re-ranker
     print("\n-------------------------\n")
     print("Top-3 Cross-Encoder Re-ranker hits")
     hits = sorted(hits, key=lambda x: x['cross-score'], reverse=True)
     for hit in hits[0:3]:
-        print("\t{:.3f}\t{}".format(hit['cross-score'], documents[hit['corpus_id']].replace("\n", " ")))
+        print("\t{:.3f}\t{}".format(hit['cross-score'], paragraphs[hit['corpus_id']].replace("\n", " ")))
 
