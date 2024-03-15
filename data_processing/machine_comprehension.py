@@ -1,13 +1,18 @@
 from transformers import pipeline
 
-qa_pipeline = pipeline("question-answering", model="distilbert-base-uncased-distilled-squad")
+model_name = "atharvamundada99/bert-large-question-answering-finetuned-legal"
 
-def get_best_answer(query, documents):
+# a) Get predictions
+qa_pipeline = pipeline('question-answering', model=model_name, tokenizer=model_name, max_answer_len = 80, max_seq_len = 512)
+
+def get_best_answer(query, results):
     answers = []
-    for doc in documents:
+    for item in results:
+        paragraph = item["text"]
+        case_id = item["case_id"]
         # Obtain answer for the current document
-        result = qa_pipeline(question=query, context=doc)
-        answers.append((result['answer'], result['score']))
+        result = qa_pipeline(question=query, context=paragraph)
+        answers.append((result['answer'], result['score'], paragraph, case_id))
     
     # Sort answers by score in descending order and select the top answer
     best_answer = sorted(answers, key=lambda x: x[1], reverse=True)[0]

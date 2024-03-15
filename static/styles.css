@@ -2,12 +2,15 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #ffffff;
+  background-color: #ddd0c8;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: auto;
   flex-direction: column;
+  overflow-y: auto;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .search-container {
@@ -25,38 +28,38 @@ body {
   border: transparent;
   border-radius: 20px;
   font-size: 16px;
-  color: #ffffff;
-  background-color: #f6811f;
+  color: #323232;
+  background-color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease-in-out; /* Smooth transition for the shadow effect */
 }
 
 #queryInput::placeholder {
-  color: white; /* Change placeholder text color to white */
+  color: #323232; /* Change placeholder text color to white */
 }
 
 #queryInput:focus {
-  color: white;
+  color: #323232;
   outline: none;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15), 0 4px 6px rgba(0, 0, 0, 0.4);
 }
 
 #queryInput:hover {
-  color: white;
+  color: #323232;
   outline: none;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15), 0 4px 6px rgba(0, 0, 0, 0.4);
 }
 
 #submitBtn {
-  background: url("icons8-search-50.png") no-repeat center;
-  background-size: 70%;
-  background-color: #f6811f;
+  background: url("magnifying_glass.png") no-repeat center;
+  background-size: 50%;
+  background-color: white;
   border-radius: 50%;
   border: none;
   width: 42px;
   height: 42px;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15), 0 3px 5px rgba(0, 0, 0, 0.4);
 }
 
 #submitBtn:hover {
@@ -69,12 +72,12 @@ body {
   border: transparent;
   border-radius: 15px;
   width: 700px;
-  height: 200px;
+  height: 500px;
   background-color: #ffffff;
   color: #333;
-  overflow: auto;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease-in-out; /* Smooth transition for the shadow effect */
+  overflow-y: auto;
 }
 
 .menu-bar {
@@ -83,28 +86,104 @@ body {
   top: 0; /* Align the top of the menu bar with the top of the screen */
   left: 0; /* Align the left of the menu bar with the left of the screen */
   width: 100%; /* Stretch the menu bar across the full width */
-  background-color: #173682; /* Change the background color to a darker shade */
+  background-color: #ddd0c8; /* Change the background color to a darker shade */
   color: white; /* Change the text color to white for better contrast */
-  padding: 10px 0; /* Some vertical padding for aesthetic spacing */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adjust the shadow for depth */
+  padding: 10px 20px; /* Some vertical padding for aesthetic spacing */
   z-index: 1000; /* Ensure the menu bar is above other elements */
   display: flex;
   justify-content: flex-start; /* Align buttons to the left */
   gap: 10px; /* Space between buttons */
-  padding-left: 20px; /* Add padding to the left inside the menu bar */
 }
 
 .menu-bar button {
   font-family: "Poppins", sans-serif;
-  color: #ffffff;
-  background-color: #f6811f; /* Button background color */
+  color: #ddd0c8;
+  background-color: #323232; /* Button background color */
   border: none; /* Remove default border */
-  padding: 10px 20px; /* Padding inside the buttons */
-  border-radius: 5px; /* Slightly rounded corners for the buttons */
+  padding: 10px 15px; /* Padding inside the buttons */
+  border-radius: 10px; /* Slightly rounded corners for the buttons */
   cursor: pointer; /* Change cursor to pointer on hover */
   transition: background-color 0.3s ease-in-out; /* Smooth background color transition on hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .menu-bar button:hover {
-  background-color: #c86a1d; /* Darker shade on hover */
+  background-color: #4b4b4b; /* Darker shade on hover */
+}
+
+.title-container {
+  margin-top: 50px;
+  text-align: center; /* Center the text */
+  color: #323232; /* Adjust the color to fit your design */
+  margin-bottom: 20px; /* Add some space below the title and description */
+}
+
+.title-container h1 {
+  color: #0c1a1a;
+  font-size: 3em; /* Make the title larger */
+  margin-bottom: 0.3em; /* Add some space between the title and description */
+}
+
+.title-container p {
+  font-size: 0.9em; /* Set the size for the description text */
+  color: #333; /* Make the description text a bit darker for contrast */
+}
+
+#answer-section {
+  max-width: 800px;
+  margin: 5px auto; /* Center the answer section */
+}
+
+#answer-text {
+  font-size: 1.2em; /* Larger font size for answer */
+  font-weight: bold; /* Make the answer bold */
+}
+
+#source-text {
+  font-size: 0.85em; /* Smaller font size for source paragraph */
+  color: #555; /* A different color for the source text */
+  margin-top: 10px; /* Space between answer and source paragraph */
+}
+
+.highlight {
+  background-color: yellow; /* Choose the highlight color */
+}
+
+#toggleDocumentBtn {
+  display: none;
+}
+
+/* Button Styling */
+.show-document-btn {
+  padding: 6px 10px;
+  background-color: #0056b3; /* Deep blue background */
+  color: #ffffff; /* White text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  /* Add a box-shadow to lift the button off the page */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+}
+
+.show-document-btn:hover {
+  background-color: #003d82; /* Slightly darker blue on hover */
+  /* Scale up the button slightly when hovered */
+  transform: scale(1.05);
+}
+
+/* Document Presentation Styling */
+.document-container {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.15em;
+  margin: auto;
+  display: none; /* Initially hidden */
+  width: 225mm; /* Width of A4 paper */
+  min-height: 297mm; /* Minimum height of A4 paper */
+  padding: 38mm;
+  margin: auto; /* Center the container */
+  background-color: #ffffff; /* White background like paper */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Large shadow for depth */
+  overflow-y: auto; /* Allow scrolling on y-axis */
 }

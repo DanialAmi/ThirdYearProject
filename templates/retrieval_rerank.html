@@ -7,11 +7,19 @@
   <body>
     <div class="menu-bar">
       <button onclick="window.location='/original-method'">
-        Original Method
+        Document Retrieval and Paragraph Selection
       </button>
       <button onclick="window.location='/retrieval-rerank'">
         Retrieval and Re-rank
       </button>
+    </div>
+    <div class="title-container">
+      <h1>Your Legal Question Answering System</h1>
+      <p>
+        Discover precise answers to your legal inquiries, using
+        <strong>language models</strong> to
+        <strong>retrieve and re-rank</strong> your answer from SigmaLaw
+      </p>
     </div>
     <div class="search-container">
       <input
@@ -20,6 +28,20 @@
         placeholder="Enter your legal question here"
       />
       <button id="submitBtn" onclick="submitQueryRetrievalRerank()"></button>
+    </div>
+    <div id="answer-section">
+      <div id="answer-result">
+        <h2 id="answer-text"></h2>
+        <!-- Answer in bold and larger font -->
+      </div>
+      <div id="source-paragraph">
+        <p id="source-text"></p>
+        <!-- Source in smaller font or different color -->
+      </div>
+    </div>
+    <button id="toggleDocumentBtn" style:"display: none" class="show-document-btn">Read the whole document here</button>
+    <div id="documentContent" style="display: none" class="document-container">
+      <!-- This is where the document content will be dynamically inserted -->
     </div>
     <div id="answerSpace">Answer will appear here</div>
 
